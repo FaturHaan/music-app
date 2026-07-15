@@ -20,7 +20,7 @@ subprojects {
     afterEvaluate {
         if (project.name != "app") {
             project.extensions.findByName("android")?.let { ext ->
-                ext.javaClass.getMethod("compileSdkVersion", Integer.TYPE).invoke(ext, 34)
+                ext.javaClass.getMethod("compileSdkVersion", Integer.TYPE).invoke(ext, 36)
             }
         }
     }
