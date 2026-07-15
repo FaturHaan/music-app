@@ -19,7 +19,7 @@ Future<void> main() async {
     try {
       await dotenv.load(fileName: ".env");
     } catch (e) {
-      debugPrint('Failed to load .env file, using default values.');
+      debugPrint('Failed to load .env file, using default values: $e');
     }
 
     // Setup service locator (DI)
