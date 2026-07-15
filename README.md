@@ -1,34 +1,97 @@
-# Music App — Prioritas Pengembangan
+# 🎵 Modern Flutter Music App
 
-## 🔴 High Priority
+A fully featured, beautiful, and highly responsive local and online music player built with Flutter. Designed with a modern, glassmorphic UI, this app brings your favorite local music files and online streams (Jamendo, YouTube, iTunes) together into one unified experience.
 
-| # | Item | Status | Keterangan |
-|---|------|--------|------------|
-| 1 | **Error handling** | ❌ Belum | Banyak `try/catch` kosong, tidak ada error state di PlayerProvider, tidak ada global error handler |
-| 2 | **Fitur stubs** | ❌ Belum | Lyrics button (now-playing), add online song ke playlist, favorite untuk lagu online belum berfungsi |
-| 3 | **Test coverage** | ⚠️ Minimal | Hanya 2 unit test (playlist & search), widget test placeholder, tidak ada integration test |
-| 4 | **YouTube stream cache** | ⚠️ Sebagian | Stream URL expire ~6 jam, mekanisme cache/refresh belum tuntas |
-| 5 | **SourceBadge YouTube** | ❌ Belum | Lagu YouTube tidak menampilkan badge yang benar |
-| 6 | **Genre filter** | ❌ Belum | Genre card hardcoded, navigasi ke Search tidak membawa filter genre |
+![Flutter Version](https://img.shields.io/badge/Flutter-%E2%89%A53.19.0-02569B?style=for-the-badge&logo=flutter)
+![Dart Version](https://img.shields.io/badge/Dart-%E2%89%A53.3.0-0175C2?style=for-the-badge&logo=dart)
+![CI/CD Status](https://img.shields.io/github/actions/workflow/status/FaturHaan/music-app/flutter-build.yml?style=for-the-badge&logo=github)
 
-## 🟡 Medium Priority
+---
 
-| # | Item | Status | Keterangan |
-|---|------|--------|------------|
-| 7 | **Deduplikasi search** | ⚠️ Placeholder | `source_aggregator.dart` line 26: TODO dedup logic |
-| 8 | **API key management** | ⚠️ Placeholder | `.env` tidak ada, Jamendo & Last.fm silent fail |
-| 9 | **DiscoveryProvider.loadGenres()** | ❌ Belum | Method disebut di README tapi belum diimplementasikan |
-| 10 | **CI/CD pipeline** | ❌ Belum | Tidak ada GitHub Actions, Fastlane, Codemagic |
-| 11 | **Platform iOS** | ❌ Belum | Hanya Android & Web, iOS belum di-generate |
-| 12 | **Crash reporting** | ❌ Belum | Tidak ada Sentry / Firebase Crashlytics |
+## ✨ Key Features
 
-## 🟢 Low Priority
+- 🎧 **Unified Library**: Play local audio files or stream online music seamlessly from a single unified player interface.
+- 🌐 **Multi-Source Search & Aggregation**: Discover and stream music from multiple platforms (Jamendo, YouTube, iTunes). Features smart deduplication so you only see the best version of each track.
+- 🎤 **Live Lyrics**: Synchronized and static lyrics support. Uses in-memory caching and intelligent fallback APIs (`lyrics.ovh` & `lyrist.vercel.app`) for maximum reliability.
+- 💾 **Smart Caching**: YouTube stream URLs are intelligently cached with 5-hour expiration logic to minimize network requests and optimize performance.
+- 🗂️ **Playlist & Favorites Management**: Create custom playlists, mark tracks as favorites, and persist online songs automatically to your local SQLite database for offline cataloging.
+- 🎨 **Dynamic UI/UX**: State-of-the-art "glassmorphism" design, dynamic genre discovery cards, robust state handling, and persistent user preferences.
+- 🛡️ **Robust Error Handling**: Graceful error recovery for playback and network issues, keeping the user informed without breaking the experience.
 
-| # | Item | Status | Keterangan |
-|---|------|--------|------------|
-| 13 | **Lyrics caching & fallback** | ⚠️ Single source | Hanya lyrics.ovh tanpa fallback/cache |
-| 14 | **Autentikasi & cloud sync** | ❌ Belum | Mungkin tidak diperlukan untuk music player lokal |
-| 15 | **Filter/sort persist** | ❌ Belum | Sort/filter di Library Screen tidak persist |
-| 16 | **Versi konsisten** | ⚠️ Tidak konsisten | pubspec.yaml = 1.0.0+1, app_constants.dart = 2.0.0 |
-| 17 | **Song Info dialog** | ⚠️ Minimalis | Bisa diperkaya dengan metadata lebih detail |
-| 18 | **User-Agent placeholder** | ⚠️ Placeholder | musicbrainz_source.dart pakai `fatur@example.com` |
+---
+
+## 📸 Screenshots
+
+*(Add screenshots of your application here to showcase the Home, Search, Now Playing, and Lyrics screens)*
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to get the app running on your local machine.
+
+### Prerequisites
+
+- [Flutter SDK](https://docs.flutter.dev/get-started/install) (v3.19.0 or higher)
+- Android Studio / Xcode for emulators and building
+- Git
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/FaturHaan/music-app.git
+   cd music-app
+   ```
+
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Set up Environment Variables (API Keys)**
+   This app uses Jamendo and Last.fm for online music search and metadata enrichment.
+   - Copy the example environment file:
+     ```bash
+     cp .env.example .env
+     ```
+   - Open `.env` and fill in your keys:
+     ```env
+     JAMENDO_CLIENT_ID=your_jamendo_client_id_here
+     LASTFM_API_KEY=your_lastfm_api_key_here
+     ```
+   *(Note: You can obtain these keys for free from the [Jamendo Developer Portal](https://developer.jamendo.com/v3.0) and [Last.fm API](https://www.last.fm/api).)*
+
+4. **Run the App**
+   ```bash
+   flutter run
+   ```
+
+---
+
+## 🛠️ Architecture & Tech Stack
+
+This project is built focusing on clean architecture principles, testability, and smooth performance:
+- **State Management**: `Provider` architecture for efficient, predictable UI rebuilds.
+- **Audio Engine**: `just_audio` for robust, gapless audio playback, streaming, and background capabilities.
+- **Local Storage**: `sqflite` for relational metadata storage (playlists, favorite flags, offline catalog) and `shared_preferences` for UI state persistence (sorting/filters).
+- **Network & CI/CD**: Seamless GitHub Actions CI/CD pipeline ensuring code health (lints, unit tests, and automated APK releases).
+
+## 🧪 Testing
+
+The app is covered by a suite of unit and widget tests targeting core business logic (e.g., `PlayerProvider`, `SourceAggregator`, and `SearchProvider`).
+Run the test suite using:
+```bash
+flutter test
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! 
+Feel free to check the [issues page](https://github.com/FaturHaan/music-app/issues) if you want to contribute.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
