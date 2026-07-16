@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import '../models/song_model.dart';
 import 'music_source.dart';
 
@@ -10,8 +11,16 @@ class SourceAggregator {
   Future<List<SongModel>> searchAll(String query, {int limitPerSource = 15}) async {
     if (query.trim().isEmpty) return [];
 
+    debugPrint('[SourceAggregator] Searching ${_sources.length} sources for: "$query"');
+
     final List<Future<List<SongModel>>> futures = _sources.map(
-      (source) => source.search(query, limit: limitPerSource).catchError((_) => <SongModel>[])
+      (source) => source.search(query, limit: limitPerSource).then((results) {
+        debugPrint('[SourceAggregator] ${source.sourceName}: ${results.length} results');
+        return results;
+      }).catchError((e) {
+        debugPrint('[SourceAggregator] ${source.sourceName} error: $e');
+        return <SongModel>[];
+      })
     ).toList();
 
     try {

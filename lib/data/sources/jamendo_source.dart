@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import '../../core/constants/app_constants.dart';
 import '../models/song_model.dart';
@@ -10,24 +11,29 @@ class JamendoSource implements MusicSource {
 
   @override
   Future<List<SongModel>> search(String query, {int limit = 20}) async {
+    debugPrint('[Jamendo] search() clientId=${AppConstants.jamendoClientId}');
     if (AppConstants.jamendoClientId == 'YOUR_JAMENDO_CLIENT_ID') {
-      return []; // Return empty if no client ID is set
+      debugPrint('[Jamendo] No client ID set, returning empty');
+      return [];
     }
 
     try {
       final uri = Uri.parse(
           '${AppConstants.jamendoBaseUrl}/tracks/?client_id=${AppConstants.jamendoClientId}&format=json&limit=$limit&search=$query&include=musicinfo');
+      debugPrint('[Jamendo] Requesting: $uri');
       final response = await http.get(uri);
+      debugPrint('[Jamendo] Response status: ${response.statusCode}');
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data['results'] != null) {
           final List<dynamic> results = data['results'];
+          debugPrint('[Jamendo] Found ${results.length} tracks');
           return results.map((track) => _parseJamendoTrack(track)).toList();
         }
       }
     } catch (e) {
-      // Ignore errors and return empty list
+      debugPrint('[Jamendo] Search error: $e');
     }
     return [];
   }
