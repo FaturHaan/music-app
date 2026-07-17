@@ -27,17 +27,6 @@ void main() {
       expect(find.byIcon(Icons.cloud), findsOneWidget);
     });
 
-    testWidgets('Renders Jamendo source badge correctly', (WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(
-        home: Scaffold(
-          body: SourceBadge(source: AppConstants.sourceJamendo),
-        ),
-      ));
-
-      expect(find.text('Jamendo'), findsOneWidget);
-      expect(find.byIcon(Icons.music_video), findsOneWidget);
-    });
-
     testWidgets('Renders iTunes source badge correctly', (WidgetTester tester) async {
       await tester.pumpWidget(const MaterialApp(
         home: Scaffold(

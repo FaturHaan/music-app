@@ -12,15 +12,6 @@ class AppConstants {
   static const String musicDir = 'music';
   static const String coversDir = 'covers';
 
-  // API Keys (replace with your own)
-  static String get jamendoClientId {
-    try {
-      return dotenv.env['JAMENDO_CLIENT_ID'] ?? 'YOUR_JAMENDO_CLIENT_ID';
-    } catch (_) {
-      return 'YOUR_JAMENDO_CLIENT_ID';
-    }
-  }
-
   static String get lastfmApiKey {
     try {
       return dotenv.env['LASTFM_API_KEY'] ?? 'YOUR_LASTFM_API_KEY';
@@ -30,7 +21,6 @@ class AppConstants {
   }
 
   // API Base URLs
-  static const String jamendoBaseUrl = 'https://api.jamendo.com/v3.0';
   static const String itunesBaseUrl = 'https://itunes.apple.com';
   static const String lastfmBaseUrl = 'https://ws.audioscrobbler.com/2.0';
   static const String musicbrainzBaseUrl = 'https://musicbrainz.org/ws/2';
@@ -58,7 +48,6 @@ class AppConstants {
 
   // Music sources
   static const String sourceLocal = 'local';
-  static const String sourceJamendo = 'jamendo';
   static const String sourceItunes = 'itunes';
   static const String sourceSoundcloud = 'soundcloud';
 

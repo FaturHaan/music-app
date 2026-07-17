@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/theme/app_colors.dart';
-import '../../core/widgets/loading_widget.dart';
 import '../../core/widgets/empty_state.dart';
 import '../../providers/discovery_provider.dart';
-import 'widgets/trending_section.dart';
-import 'widgets/category_section.dart';
 import 'widgets/genre_card.dart';
 
 class DiscoverScreen extends StatefulWidget {
@@ -20,7 +17,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<DiscoveryProvider>().loadDiscoverData();
+      context.read<DiscoveryProvider>().loadGenres();
     });
   }
 
@@ -39,10 +36,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         ),
         body: Consumer<DiscoveryProvider>(
           builder: (context, provider, _) {
-            if (provider.isLoadingTrending && provider.isLoadingNewReleases) {
-              return const LoadingWidget(message: 'Discovering music...');
-            }
-
             if (provider.error != null) {
               return EmptyState(
                 icon: Icons.error_outline,
@@ -59,28 +52,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 padding: const EdgeInsets.only(bottom: 120),
                 children: [
                   const SizedBox(height: 16),
-                  
-                  // Trending Section
-                  if (provider.trending.isNotEmpty) ...[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'Trending Now',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: isDark
-                              ? AppColors.darkTextPrimary
-                              : AppColors.lightTextPrimary,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    TrendingSection(songs: provider.trending),
-                    const SizedBox(height: 32),
-                  ],
 
-                  // Genres Section (Static for now)
+                  // Genres Section
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
@@ -111,26 +84,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 32),
-
-                  // New Releases Section
-                  if (provider.newReleases.isNotEmpty) ...[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'New Releases',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: isDark
-                              ? AppColors.darkTextPrimary
-                              : AppColors.lightTextPrimary,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    CategorySection(songs: provider.newReleases),
-                  ],
                 ],
               ),
             );

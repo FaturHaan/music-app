@@ -50,7 +50,7 @@ class FakeSourceAggregator extends SourceAggregator {
   Future<List<SongModel>> searchAll(String query, {int limitPerSource = 15}) async {
     if (query == 'online') {
       return [
-        SongModel(title: 'Online Song', artist: 'Artist', album: 'Album', durationMs: 100, filePath: '', source: 'jamendo', dateAdded: DateTime.now()),
+        SongModel(title: 'Online Song', artist: 'Artist', album: 'Album', durationMs: 100, filePath: '', source: 'itunes', dateAdded: DateTime.now()),
       ];
     }
     return [];

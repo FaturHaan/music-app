@@ -14,11 +14,6 @@ class SourceBadge extends StatelessWidget {
     IconData icon;
 
     switch (source) {
-      case AppConstants.sourceJamendo:
-        bgColor = const Color(0xFFD32F2F); // Red
-        label = 'Jamendo';
-        icon = Icons.music_video;
-        break;
       case AppConstants.sourceItunes:
         bgColor = const Color(0xFF1976D2); // Blue
         label = 'iTunes';

@@ -12,7 +12,6 @@ import 'providers/search_provider.dart';
 import 'providers/settings_provider.dart';
 import 'providers/connectivity_provider.dart';
 
-import 'data/sources/jamendo_source.dart';
 import 'data/sources/itunes_source.dart';
 import 'data/sources/lastfm_source.dart';
 import 'data/sources/musicbrainz_source.dart';
@@ -29,18 +28,16 @@ Future<void> setupServiceLocator() async {
   getIt.registerSingleton<DatabaseHelper>(dbHelper);
 
   // Sources
-  final jamendoSource = JamendoSource();
   final itunesSource = ItunesSource();
   final lastFmSource = LastFmSource();
   final musicBrainzSource = MusicBrainzSource();
   final soundcloudSource = SoundcloudSource();
-  getIt.registerSingleton<JamendoSource>(jamendoSource);
   getIt.registerSingleton<ItunesSource>(itunesSource);
   getIt.registerSingleton<LastFmSource>(lastFmSource);
   getIt.registerSingleton<MusicBrainzSource>(musicBrainzSource);
   getIt.registerSingleton<SoundcloudSource>(soundcloudSource);
   getIt.registerSingleton<SourceAggregator>(
-    SourceAggregator([jamendoSource, itunesSource, soundcloudSource]),
+    SourceAggregator([itunesSource, soundcloudSource]),
   );
 
   // Services
@@ -83,7 +80,7 @@ Future<void> setupServiceLocator() async {
     ),
   );
   getIt.registerSingleton<DiscoveryProvider>(
-    DiscoveryProvider(getIt<JamendoSource>()),
+    DiscoveryProvider(),
   );
   getIt.registerSingleton<SettingsProvider>(SettingsProvider());
   getIt.registerSingleton<ConnectivityProvider>(ConnectivityProvider());
