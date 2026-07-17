@@ -1,6 +1,6 @@
 # 🎵 Modern Flutter Music App
 
-A fully featured, beautiful, and highly responsive local and online music player built with Flutter. Designed with a modern, glassmorphic UI, this app brings your favorite local music files and online streams (Jamendo, YouTube, iTunes) together into one unified experience.
+A fully featured, beautiful, and highly responsive local and online music player built with Flutter. Designed with a modern, glassmorphic UI, this app brings your favorite local music files and online streams (SoundCloud, iTunes) together into one unified experience.
 
 ![Flutter Version](https://img.shields.io/badge/Flutter-%E2%89%A53.19.0-02569B?style=for-the-badge&logo=flutter)
 ![Dart Version](https://img.shields.io/badge/Dart-%E2%89%A53.3.0-0175C2?style=for-the-badge&logo=dart)
@@ -11,9 +11,9 @@ A fully featured, beautiful, and highly responsive local and online music player
 ## ✨ Key Features
 
 - 🎧 **Unified Library**: Play local audio files or stream online music seamlessly from a single unified player interface.
-- 🌐 **Multi-Source Search & Aggregation**: Discover and stream music from multiple platforms (Jamendo, YouTube, iTunes). Features smart deduplication so you only see the best version of each track.
+- 🌐 **Multi-Source Search & Aggregation**: Discover and stream music from multiple platforms (SoundCloud, iTunes). Features smart deduplication so you only see the best version of each track.
 - 🎤 **Live Lyrics**: Synchronized and static lyrics support. Uses in-memory caching and intelligent fallback APIs (`lyrics.ovh` & `lyrist.vercel.app`) for maximum reliability.
-- 💾 **Smart Caching**: YouTube stream URLs are intelligently cached with 5-hour expiration logic to minimize network requests and optimize performance.
+- 💾 **Smart Caching**: Stream URLs are intelligently cached with 5-hour expiration logic to minimize network requests and optimize performance.
 - 🗂️ **Playlist & Favorites Management**: Create custom playlists, mark tracks as favorites, and persist online songs automatically to your local SQLite database for offline cataloging.
 - 🎨 **Dynamic UI/UX**: State-of-the-art "glassmorphism" design, dynamic genre discovery cards, robust state handling, and persistent user preferences.
 - 🛡️ **Robust Error Handling**: Graceful error recovery for playback and network issues, keeping the user informed without breaking the experience.
@@ -50,17 +50,17 @@ Follow these steps to get the app running on your local machine.
    ```
 
 3. **Set up Environment Variables (API Keys)**
-   This app uses Jamendo and Last.fm for online music search and metadata enrichment.
+   This app uses Last.fm and SoundCloud for online music metadata enrichment and streaming.
    - Copy the example environment file:
      ```bash
      cp .env.example .env
      ```
    - Open `.env` and fill in your keys:
      ```env
-     JAMENDO_CLIENT_ID=your_jamendo_client_id_here
      LASTFM_API_KEY=your_lastfm_api_key_here
+     SOUNDCLOUD_CLIENT_ID=your_soundcloud_client_id_here
      ```
-   *(Note: You can obtain these keys for free from the [Jamendo Developer Portal](https://developer.jamendo.com/v3.0) and [Last.fm API](https://www.last.fm/api).)*
+   *(Note: You can obtain these keys for free from the [Last.fm API](https://www.last.fm/api) and [SoundCloud API](https://developers.soundcloud.com/).)*
 
 4. **Run the App**
    ```bash
