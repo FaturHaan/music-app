@@ -17,7 +17,7 @@ import 'data/sources/itunes_source.dart';
 import 'data/sources/lastfm_source.dart';
 import 'data/sources/musicbrainz_source.dart';
 import 'data/sources/source_aggregator.dart';
-import 'data/sources/youtube_source.dart';
+import 'data/sources/soundcloud_source.dart';
 import 'data/services/enrichment_service.dart';
 import 'providers/discovery_provider.dart';
 
@@ -33,14 +33,14 @@ Future<void> setupServiceLocator() async {
   final itunesSource = ItunesSource();
   final lastFmSource = LastFmSource();
   final musicBrainzSource = MusicBrainzSource();
-  final youtubeSource = YoutubeSource();
+  final soundcloudSource = SoundcloudSource();
   getIt.registerSingleton<JamendoSource>(jamendoSource);
   getIt.registerSingleton<ItunesSource>(itunesSource);
   getIt.registerSingleton<LastFmSource>(lastFmSource);
   getIt.registerSingleton<MusicBrainzSource>(musicBrainzSource);
-  getIt.registerSingleton<YoutubeSource>(youtubeSource);
+  getIt.registerSingleton<SoundcloudSource>(soundcloudSource);
   getIt.registerSingleton<SourceAggregator>(
-    SourceAggregator([jamendoSource, itunesSource, youtubeSource]),
+    SourceAggregator([jamendoSource, itunesSource, soundcloudSource]),
   );
 
   // Services

@@ -42,7 +42,7 @@ dependencies:
   intl: ^0.19.0
   uuid: ^4.5.1
   shared_preferences: ^2.5.5
-  youtube_explode_dart: ^3.1.0
+  # SoundCloud source uses the http package (listed above)
   flutter_dotenv: ^6.0.1
   rxdart: ^0.28.0
 

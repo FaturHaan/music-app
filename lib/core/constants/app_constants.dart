@@ -60,5 +60,8 @@ class AppConstants {
   static const String sourceLocal = 'local';
   static const String sourceJamendo = 'jamendo';
   static const String sourceItunes = 'itunes';
-  static const String sourceYoutube = 'youtube';
+  static const String sourceSoundcloud = 'soundcloud';
+
+  // SoundCloud API
+  static const String soundcloudBaseUrl = 'https://api.soundcloud.com';
 }

@@ -24,7 +24,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     },
     {
       'title': 'Discover New Music',
-      'description': 'Search and stream from YouTube, Jamendo, and iTunes all in one place.',
+      'description': 'Search and stream from SoundCloud, Jamendo, and iTunes all in one place.',
       'icon': 'explore',
     },
     {

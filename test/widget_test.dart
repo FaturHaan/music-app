@@ -16,15 +16,15 @@ void main() {
       expect(find.byIcon(Icons.sd_storage), findsOneWidget);
     });
 
-    testWidgets('Renders YouTube source badge correctly', (WidgetTester tester) async {
+    testWidgets('Renders SoundCloud source badge correctly', (WidgetTester tester) async {
       await tester.pumpWidget(const MaterialApp(
         home: Scaffold(
-          body: SourceBadge(source: AppConstants.sourceYoutube),
+          body: SourceBadge(source: AppConstants.sourceSoundcloud),
         ),
       ));
 
-      expect(find.text('YouTube'), findsOneWidget);
-      expect(find.byIcon(Icons.play_circle_outline), findsOneWidget);
+      expect(find.text('SoundCloud'), findsOneWidget);
+      expect(find.byIcon(Icons.cloud), findsOneWidget);
     });
 
     testWidgets('Renders Jamendo source badge correctly', (WidgetTester tester) async {

@@ -24,10 +24,10 @@ class SourceBadge extends StatelessWidget {
         label = 'iTunes';
         icon = Icons.library_music;
         break;
-      case AppConstants.sourceYoutube:
-        bgColor = const Color(0xFFFF0000); // YouTube Red
-        label = 'YouTube';
-        icon = Icons.play_circle_outline;
+      case AppConstants.sourceSoundcloud:
+        bgColor = const Color(0xFFFF7700); // SoundCloud Orange
+        label = 'SoundCloud';
+        icon = Icons.cloud;
         break;
       case AppConstants.sourceLocal:
       default:

@@ -115,7 +115,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   const SizedBox(width: 8),
                   _buildSourceChip('Local', AppConstants.sourceLocal),
                   const SizedBox(width: 8),
-                  _buildSourceChip('YouTube', AppConstants.sourceYoutube),
+                  _buildSourceChip('SoundCloud', AppConstants.sourceSoundcloud),
                   const SizedBox(width: 8),
                   _buildSourceChip('Jamendo', AppConstants.sourceJamendo),
                   const SizedBox(width: 8),
